@@ -1,7 +1,7 @@
 export const Images = [
   {
     id: 0,
-    src: 'src/assets/images/baby_penguin.png',
+    src: '/assets/images/baby_penguin.png',
     name: '걸어가는 펭귄',
     positionX: 290,
     positionY: 55,
@@ -10,7 +10,7 @@ export const Images = [
   },
   {
     id: 1,
-    src: 'src/assets/images/thinking_puppy.png',
+    src: '/assets/images/thinking_puppy.png',
     name: '생각하는 강아지',
     positionX: 120,
     positionY: 100,
@@ -19,7 +19,7 @@ export const Images = [
   },
   {
     id: 2,
-    src: 'src/assets/images/punch_hamster.png',
+    src: '/assets/images/punch_hamster.png',
     name: '주먹왕 햄스터',
     positionX: 290,
     positionY: 260,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
-import { Images } from '../assets/images/images';
+import { Images } from '../../public/assets/images/images';
 
 const MainPage = () => {
   const canvasRef: React.RefObject<HTMLCanvasElement> = useRef(null);
