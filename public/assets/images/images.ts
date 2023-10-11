@@ -2,7 +2,7 @@ export const Images = [
   {
     id: 0,
     src: '/assets/images/baby_penguin.png',
-    name: '걸어가는 펭귄',
+    name: '걸어가는 펭귄 친구',
     positionX: 300,
     positionY: 55,
     maxWidth: 130,

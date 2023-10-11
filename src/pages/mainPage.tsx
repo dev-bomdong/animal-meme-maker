@@ -109,7 +109,7 @@ const MainPage = () => {
               <Option value={item.src}>{item.name}</Option>
             ))}
           </Select>
-          이/가 말해요
+          가 말해요
         </SelectWrapper>
         <canvas id="canvas" ref={canvasRef} width={400} height={400} />
         <Input
@@ -132,10 +132,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 3rem;
+  font-family: DungGeunMo;
 `;
 
 const Title = styled.div`
-  font-family: DungGeunMo;
   font-size: 2.5rem;
 `;
 
@@ -150,20 +150,20 @@ const Body = styled.div`
 `;
 
 const SelectWrapper = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   color: #8aff80;
-  gap: 1rem;
 `;
 
 const Select = styled.select`
-  width: 12rem;
+  max-width: 14rem;
   cursor: pointer;
   color: #ff80bf;
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-family: DungGeunMo;
 
   &:focus {
     outline: none;
