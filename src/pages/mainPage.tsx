@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
 import { Images } from '../../public/assets/images/images';
+import IcTabSymbol from '../../public/assets/icons/IcTabSymbol.svg';
 
 const MainPage = () => {
   const canvasRef: React.RefObject<HTMLCanvasElement> = useRef(null);
@@ -87,27 +88,29 @@ const MainPage = () => {
 
   return (
     <Container>
-      <Header>
-        <Title>동물 말풍선 짤 생성기</Title>
-      </Header>
+      <Title>동물 말풍선 짤 생성기</Title>
 
       <Body>
-        <Select
-          onChange={(e) => {
-            setTextPosition({
-              x: Images[e.target.selectedIndex].positionX,
-              y: Images[e.target.selectedIndex].positionY,
-              maxWidth: Images[e.target.selectedIndex].maxWidth,
-              maxHeight: Images[e.target.selectedIndex].maxHeight,
-            });
-            setSelectedImage(e.target.value);
-            setCanvasText('');
-          }}
-        >
-          {Images.map((item: any) => (
-            <Option value={item.src}>{item.name}</Option>
-          ))}
-        </Select>
+        <img src={IcTabSymbol} width={54} alt="IcTabSymbol" />
+        <SelectWrapper>
+          <Select
+            onChange={(e) => {
+              setTextPosition({
+                x: Images[e.target.selectedIndex].positionX,
+                y: Images[e.target.selectedIndex].positionY,
+                maxWidth: Images[e.target.selectedIndex].maxWidth,
+                maxHeight: Images[e.target.selectedIndex].maxHeight,
+              });
+              setSelectedImage(e.target.value);
+              setCanvasText('');
+            }}
+          >
+            {Images.map((item: any) => (
+              <Option value={item.src}>{item.name}</Option>
+            ))}
+          </Select>
+          이/가 말해요
+        </SelectWrapper>
         <canvas id="canvas" ref={canvasRef} width={400} height={400} />
         <Input
           value={canvasText}
@@ -131,26 +134,40 @@ const Container = styled.div`
   gap: 3rem;
 `;
 
-const Header = styled.div`
-  width: 100%;
-`;
-
 const Title = styled.div`
   font-family: DungGeunMo;
-  font-size: 3rem;
+  font-size: 2.5rem;
 `;
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
+  background: #22212c;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  padding: 1.2rem 1rem 1.5rem 1rem;
+  border-radius: 8px;
+`;
+
+const SelectWrapper = styled.div`
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  color: #8aff80;
   gap: 1rem;
 `;
 
 const Select = styled.select`
-  height: 3rem;
+  width: 12rem;
   cursor: pointer;
-  font-size: 1rem;
-  padding: 0.5rem;
+  color: #ff80bf;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Option = styled.option`
@@ -159,14 +176,31 @@ const Option = styled.option`
 
 const Input = styled.input`
   height: 2rem;
+  font-size: 1.2rem;
+  padding: 6px 12px;
+  border: none;
+  border: 0.5px solid gray;
+  color: #ffffff;
+  background: none;
   border-radius: 6px;
-  padding: 6px;
-  border: 1px solid lightgray;
+
+  &:hover {
+    border: 0.5px solid #ffffff;
+  }
+
+  &:focus {
+    outline: none;
+    border: 0.5px solid #ffffff;
+  }
 `;
 
 const DownloadButton = styled.button`
-  font-family: DungGeunMo;
   font-size: 1.2rem;
-  background: white;
-  border: 1px solid lightgray;
+  font-weight: normal;
+  background: #323441;
+  color: #dcdcaa;
+
+  &:hover {
+    border: 1px solid #9580ff;
+  }
 `;
