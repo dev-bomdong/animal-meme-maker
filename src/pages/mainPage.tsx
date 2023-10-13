@@ -71,7 +71,7 @@ const MainPage = () => {
   const downloadImage = () => {
     if (!canvasRef.current || canvasRef.current === null) return;
     const dataUrl = canvasRef.current.toDataURL('image/png');
-    let a = document.createElement('a');
+    const a = document.createElement('a');
     a.href = dataUrl;
     a.download = 'image.png';
     document.body.appendChild(a);
