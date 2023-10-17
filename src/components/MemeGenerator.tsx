@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Images } from '../../public/assets/images/images';
 import IcTabSymbol from '../../public/assets/icons/IcTabSymbol.svg';
 
-const MainPage = () => {
+const MemeGenerator = () => {
   const canvasRef: React.RefObject<HTMLCanvasElement> = useRef(null);
   const [canvasText, setCanvasText] = useState<string>('');
   const [textPosition, setTextPosition] = useState({
@@ -88,8 +88,6 @@ const MainPage = () => {
 
   return (
     <Container>
-      <Title>동물 말풍선 짤 생성기</Title>
-
       <Body>
         <img src={IcTabSymbol} width={54} alt="IcTabSymbol" />
         <SelectWrapper>
@@ -123,7 +121,7 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default MemeGenerator;
 
 const Container = styled.div`
   width: 100%;
@@ -133,10 +131,6 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 3rem;
   font-family: DungGeunMo;
-`;
-
-const Title = styled.div`
-  font-size: 2.5rem;
 `;
 
 const Body = styled.div`
