@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import ReactGA from 'react-ga4';
+
 import { useEffect, useRef, useState } from 'react';
 import { Images } from '../../public/assets/images/images';
 import IcTabSymbol from '../../public/assets/icons/IcTabSymbol.svg';
@@ -16,6 +18,14 @@ const MemeGenerator = () => {
   const fontSize = 20;
   const lineHeight = fontSize * 1.2;
 
+  const getDownloadEvent = () => {
+    if (import.meta.env.MODE === 'production') {
+      ReactGA.event({
+        category: 'Button',
+        action: 'click_download_button',
+      });
+    }
+  };
   const drawText = (
     context: CanvasRenderingContext2D,
     text: string,
@@ -69,6 +79,7 @@ const MemeGenerator = () => {
   };
 
   const downloadImage = () => {
+    getDownloadEvent();
     if (!canvasRef.current || canvasRef.current === null) return;
     const dataUrl = canvasRef.current.toDataURL('image/png');
     const a = document.createElement('a');
