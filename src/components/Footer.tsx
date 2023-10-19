@@ -21,6 +21,6 @@ export const FooterContainer = styled.div`
   font-family: 'Pretendard';
   color: gray;
   position: fixed;
-  bottom: 1rem;
+  bottom: 0.5rem;
   right: 1rem;
 `;

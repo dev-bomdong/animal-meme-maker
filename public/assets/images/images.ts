@@ -1,6 +1,6 @@
 export const Images = [
   {
-    id: 0,
+    id: 'BABY_PENGUIN',
     src: '/assets/images/baby_penguin.png',
     name: '걸어가는 펭귄 친구',
     positionX: 300,
@@ -9,7 +9,7 @@ export const Images = [
     maxHeight: 80,
   },
   {
-    id: 1,
+    id: 'BOXING_HAMSTER',
     src: '/assets/images/punch_hamster.png',
     name: '주먹왕 햄스터',
     positionX: 290,
@@ -18,7 +18,7 @@ export const Images = [
     maxHeight: 300,
   },
   {
-    id: 2,
+    id: 'THINKING_PUPPY',
     src: '/assets/images/thinking_puppy.png',
     name: '생각하는 강아지',
     positionX: 120,
@@ -27,7 +27,7 @@ export const Images = [
     maxHeight: 145,
   },
   {
-    id: 3,
+    id: 'EXCITED_DOG',
     src: '/assets/images/smile_puppy.png',
     name: '한껏 신난 강아지',
     positionX: 100,
@@ -36,7 +36,7 @@ export const Images = [
     maxHeight: 110,
   },
   {
-    id: 4,
+    id: 'PEEKING_PUPPY',
     src: '/assets/images/zoom_puppy.png',
     name: '빼꼼 쳐다보는 강아지',
     positionX: 110,
@@ -45,7 +45,7 @@ export const Images = [
     maxHeight: 95,
   },
   {
-    id: 5,
+    id: 'DRUNK_CAT',
     src: '/assets/images/wine_cat.png',
     name: '거나하게 취한 고양이',
     positionX: 300,
@@ -54,7 +54,7 @@ export const Images = [
     maxHeight: 80,
   },
   {
-    id: 6,
+    id: 'GRUMPY_CAT',
     src: '/assets/images/angry_cat.png',
     name: '심술난 고양이',
     positionX: 300,
