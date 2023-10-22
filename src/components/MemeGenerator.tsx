@@ -4,8 +4,16 @@ import ReactGA from 'react-ga4';
 import { useEffect, useRef, useState } from 'react';
 import { Images } from '../../public/assets/images/images';
 import IcTabSymbol from '../../public/assets/icons/IcTabSymbol.svg';
+import { useAtom } from 'jotai/index';
+import { LanguageType } from '../types/LanguageType';
+import { langTypeAtom } from '../atoms/languageAtom';
+import { useI18n } from '../hooks/useI18n';
+import { ImageType } from '../types/Image';
 
 const MemeGenerator = () => {
+  const [currentLangType] = useAtom<LanguageType>(langTypeAtom);
+  const { getTransString } = useI18n(currentLangType);
+
   const canvasRef: React.RefObject<HTMLCanvasElement> = useRef(null);
   const [canvasText, setCanvasText] = useState<string>('');
   const [textPosition, setTextPosition] = useState({
@@ -114,19 +122,21 @@ const MemeGenerator = () => {
               setCanvasText('');
             }}
           >
-            {Images.map((item: any) => (
-              <Option value={item.src}>{item.name}</Option>
+            {Images.map((item: ImageType) => (
+              <Option value={item.src}>{getTransString(item.id as any)}</Option>
             ))}
           </Select>
-          가 말해요
+          {getTransString('SAYS')}
         </SelectWrapper>
         <canvas id="canvas" ref={canvasRef} width={400} height={400} />
         <Input
           value={canvasText}
-          placeholder={'동물이 할 말을 적어주세요'}
+          placeholder={getTransString('INPUT_SOMETHING')}
           onChange={handleInput}
         />
-        <DownloadButton onClick={downloadImage}>다운로드</DownloadButton>
+        <DownloadButton onClick={downloadImage}>
+          {getTransString('DOWNLOAD')}
+        </DownloadButton>
       </Body>
     </Container>
   );
