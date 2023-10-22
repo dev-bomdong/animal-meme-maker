@@ -11,8 +11,7 @@ import { useI18n } from '../hooks/useI18n';
 import { ImageType } from '../types/Image';
 
 const MemeGenerator = () => {
-  const [currentLangType, setCurrentLangType] =
-    useAtom<LanguageType>(langTypeAtom);
+  const [currentLangType] = useAtom<LanguageType>(langTypeAtom);
   const { getTransString } = useI18n(currentLangType);
 
   const canvasRef: React.RefObject<HTMLCanvasElement> = useRef(null);

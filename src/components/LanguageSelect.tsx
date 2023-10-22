@@ -5,7 +5,7 @@ import { langTypeAtom } from '../atoms/languageAtom';
 import { STRINGS } from '../constants/language';
 
 const LanguageSelect = () => {
-  const [currentLangType, setCurrentLangType] = useAtom(langTypeAtom);
+  const [, setCurrentLangType] = useAtom(langTypeAtom);
 
   const langList: { type: LanguageType; label: string }[] = [
     { type: 'ko', label: STRINGS['LANGUAGE_TYPE']['ko'] },

@@ -5,8 +5,7 @@ import { LanguageType } from '../types/LanguageType';
 import { langTypeAtom } from '../atoms/languageAtom';
 
 export const Title = () => {
-  const [currentLangType, setCurrentLangType] =
-    useAtom<LanguageType>(langTypeAtom);
+  const [currentLangType] = useAtom<LanguageType>(langTypeAtom);
   const { getTransString } = useI18n(currentLangType);
 
   return <StyledTitle>{getTransString('TITLE')}</StyledTitle>;
