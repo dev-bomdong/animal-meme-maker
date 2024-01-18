@@ -10,13 +10,20 @@ import { langTypeAtom } from '../atoms/languageAtom';
 import { useI18n } from '../hooks/useI18n';
 import { ImageType } from '../types/Image';
 
+export type TextPositionType = {
+  x: number;
+  y: number;
+  maxWidth: number;
+  maxHeight: number;
+};
+
 const MemeGenerator = () => {
   const [currentLangType] = useAtom<LanguageType>(langTypeAtom);
   const { getTransString } = useI18n(currentLangType);
 
   const canvasRef: React.RefObject<HTMLCanvasElement> = useRef(null);
   const [canvasText, setCanvasText] = useState<string>('');
-  const [textPosition, setTextPosition] = useState({
+  const [textPosition, setTextPosition] = useState<TextPositionType>({
     x: Images[0].positionX,
     y: Images[0].positionY,
     maxWidth: Images[0].maxWidth,
@@ -34,37 +41,45 @@ const MemeGenerator = () => {
       });
     }
   };
-  const drawText = (
-    context: CanvasRenderingContext2D,
-    text: string,
-    x: number,
-    y: number,
-  ) => {
-    let line = '';
+
+  /**
+   * 줄바꿈 처리
+   */
+  const splitText = ({
+    context,
+    text,
+    textPosition,
+  }: {
+    context: CanvasRenderingContext2D;
+    text: string;
+    textPosition: TextPositionType;
+  }) => {
+    const textByLines = [];
+    let currentLineText = '';
     let lineCnt = 0;
+
     for (let n = 0; n < text.length; n++) {
-      const testLine = line + text[n];
-      const metrics = context.measureText(testLine);
+      const combinedText = currentLineText + text[n];
+      const metrics = context.measureText(combinedText);
       const testWidth = metrics.width;
 
-      if (testWidth > textPosition.maxWidth || y > textPosition.maxHeight) {
-        if (y + lineCnt * lineHeight > textPosition.maxHeight) {
-          context.fillText(line.trim() + '...', x, y); // add ellipsis to the last valid line
-          return;
-        }
-
-        context.fillText(line.trim(), x, y);
-        line = text[n] + '';
+      if (
+        testWidth > textPosition.maxWidth ||
+        textPosition.y + lineCnt * lineHeight > textPosition.maxHeight
+      ) {
+        textByLines.push(currentLineText.trim()); //꽉 채워진 한 줄을 배열로 push
+        currentLineText = text[n]; //남은 글자 저장
         lineCnt++;
-        y += lineHeight;
       } else {
-        line += text[n];
+        // 현재 줄에 글자 추가
+        currentLineText = combinedText;
       }
     }
-    context.font = `${fontSize}px Dotum`;
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText(line.trim(), x, y);
+    // 줄바꿈 처리 후 남은 글자 처리
+    if (currentLineText) {
+      textByLines.push(currentLineText.trim());
+    }
+    return textByLines;
   };
 
   const updateCanvas = () => {
@@ -86,19 +101,57 @@ const MemeGenerator = () => {
     }
   };
 
-  const downloadImage = () => {
-    getDownloadEvent();
-    if (!canvasRef.current || canvasRef.current === null) return;
-    const dataUrl = canvasRef.current.toDataURL('image/png');
+  const drawText = (
+    context: CanvasRenderingContext2D,
+    text: string,
+    x: number,
+    y: number,
+  ) => {
+    // 텍스트를 줄바꿈 단위로 분리
+    const lines = splitText({ context, text, textPosition });
+    console.log({ lines });
+    context.font = `${fontSize}px Dotum`;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+
+    for (let i = 0; i < lines.length; i++) {
+      // y좌표가 maxHeight 초과시 말줄임 처리 후 종료
+      if (y + i * lineHeight > textPosition.maxHeight) {
+        return context.fillText(lines[i] + '..', x, y + i * lineHeight);
+      }
+      // n번째 줄 글자 그림
+      context.fillText(lines[i].trim(), x, y + i * lineHeight);
+    }
+  };
+
+  const downloadImage = (url: string) => {
     const a = document.createElement('a');
-    a.href = dataUrl;
+    a.href = url;
     a.download = 'image.png';
     document.body.appendChild(a);
     a.click();
   };
 
+  const handleDownloadButton = () => {
+    getDownloadEvent();
+    if (!canvasRef.current || canvasRef.current === null) return;
+    const url = canvasRef.current.toDataURL('image/png');
+    downloadImage(url);
+  };
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCanvasText(e.target.value);
+  };
+
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTextPosition({
+      x: Images[e.target.selectedIndex].positionX,
+      y: Images[e.target.selectedIndex].positionY,
+      maxWidth: Images[e.target.selectedIndex].maxWidth,
+      maxHeight: Images[e.target.selectedIndex].maxHeight,
+    });
+    setSelectedImage(e.target.value);
+    setCanvasText('');
   };
 
   useEffect(() => {
@@ -110,18 +163,7 @@ const MemeGenerator = () => {
       <Body>
         <img src={IcTabSymbol} width={54} alt="IcTabSymbol" />
         <SelectWrapper>
-          <Select
-            onChange={(e) => {
-              setTextPosition({
-                x: Images[e.target.selectedIndex].positionX,
-                y: Images[e.target.selectedIndex].positionY,
-                maxWidth: Images[e.target.selectedIndex].maxWidth,
-                maxHeight: Images[e.target.selectedIndex].maxHeight,
-              });
-              setSelectedImage(e.target.value);
-              setCanvasText('');
-            }}
-          >
+          <Select onChange={handleSelect}>
             {Images.map((item: ImageType) => (
               <Option value={item.src}>{getTransString(item.id as any)}</Option>
             ))}
@@ -134,7 +176,7 @@ const MemeGenerator = () => {
           placeholder={getTransString('INPUT_SOMETHING')}
           onChange={handleInput}
         />
-        <DownloadButton onClick={downloadImage}>
+        <DownloadButton onClick={handleDownloadButton}>
           {getTransString('DOWNLOAD')}
         </DownloadButton>
       </Body>
