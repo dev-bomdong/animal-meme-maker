@@ -1,6 +1,7 @@
 import ReactGA from 'react-ga4';
 import { HomePage } from './pages/Home/index.tsx';
-
+import ErrorBoundary from './components/ErrorBoundary.tsx';
+import ErrorPage from './components/ErrorPage.tsx';
 import './App.css';
 import './font.css';
 
@@ -12,7 +13,11 @@ if (import.meta.env.MODE === 'production') {
 }
 
 function App() {
-  return <HomePage />;
+  return (
+    <ErrorBoundary fallback={<ErrorPage />}>
+      <HomePage />
+    </ErrorBoundary>
+  );
 }
 
 export default App;
