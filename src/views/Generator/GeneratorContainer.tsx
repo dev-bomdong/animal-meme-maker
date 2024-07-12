@@ -3,10 +3,10 @@ import ReactGA from 'react-ga4';
 
 import { GeneratorPresenter } from './GeneratorPresenter';
 import { useAtom } from 'jotai';
-import { LanguageType } from '../../types/LanguageType';
-import { Images } from '../../../public/assets/images/images';
-import { langTypeAtom } from '../../atoms/languageAtom';
-import { TextPositionType } from '../../types/Text';
+import { LanguageType } from '@types/LanguageType';
+import { Images } from '@public/assets/images/images';
+import { langTypeAtom } from '@atoms/languageAtom';
+import { TextPositionType } from '@types/TextPositionType';
 
 export const GeneratorContainer = () => {
   const [currentLangType] = useAtom<LanguageType>(langTypeAtom);

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { LanguageType } from '../types/LanguageType';
+import { LanguageType } from '@/types/LanguageType';
 import { useAtom } from 'jotai';
-import { langTypeAtom } from '../atoms/languageAtom';
-import { STRINGS } from '../constants/language';
+import { langTypeAtom } from '@/atoms/languageAtom';
+import { STRINGS } from '@/constants/language';
 
 const LanguageSelect = () => {
   const [, setCurrentLangType] = useAtom(langTypeAtom);

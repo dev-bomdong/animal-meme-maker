@@ -1,9 +1,10 @@
-import { Images } from '../../../public/assets/images/images';
-import { ImageType } from '../../types/Image';
-import { useI18n } from '../../hooks/useI18n';
-import { LanguageType } from '../../types/LanguageType';
-import * as Styled from './styles/GeneratorPresenter.styled';
-import IcTabSymbol from '../../../public/assets/icons/IcTabSymbol.svg';
+import { Images } from '@public/assets/images/images';
+import { useI18n } from '@hooks/useI18n';
+
+import * as Styled from './GeneratorPresenter.styled';
+import IcTabSymbol from '@public/assets/icons/IcTabSymbol.svg';
+import { LanguageType } from '@types/LanguageType';
+import { ImageType } from '@types/imageType';
 
 export type Props = {
   canvasText: string;

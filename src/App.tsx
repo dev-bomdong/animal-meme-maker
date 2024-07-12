@@ -1,5 +1,5 @@
 import ReactGA from 'react-ga4';
-import { HomePage } from './pages/Home/index.tsx';
+import { HomePage } from './pages/Home/HomePage.tsx';
 import ErrorBoundary from './components/ErrorBoundary.tsx';
 import ErrorPage from './components/ErrorPage.tsx';
 import './App.css';

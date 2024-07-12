@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { useI18n } from '../hooks/useI18n';
+import { useI18n } from '@hooks/useI18n';
 import { useAtom } from 'jotai/index';
-import { LanguageType } from '../types/LanguageType';
-import { langTypeAtom } from '../atoms/languageAtom';
+import { LanguageType } from '@types/LanguageType';
+import { langTypeAtom } from '@atoms/languageAtom';
 
 export const Title = () => {
   const [currentLangType] = useAtom<LanguageType>(langTypeAtom);
