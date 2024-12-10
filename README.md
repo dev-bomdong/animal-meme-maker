@@ -3,24 +3,66 @@
 </p>
 <h1 align="middle">animal-meme-maker</h1>
 
-<p align="center">A playful web application that allows users to create hilarious and shareable animal memes</p>
+Animal Meme Maker is a web-based application that enables users to create and customize shareable meme images featuring animals.
 
-## How to Use
+## features
+- Simple and intuitive meme creation interface
+- Multilingual support (English/한국어)
+- Real-time text preview with speech bubble effect
+- One-click download in PNG format
+- Responsive design for both desktop and mobile devices
+
+## User Guide
 > Follow the steps below to create your own animal meme:
 
-### 1. Choose an Animal Image
-Select an animal image from the available options.
+### 1. Select Your Language
+- Click the language selector in the top-right corner
+- Choose between English and 한국어
+- Interface language updates immediately
 
-### 2. Enter Text
-Enter your desired text in the input field. <br/>
-The text will appear in a speech bubble, making it look like the animal is speaking. 💭
+### 2. Select an Animal Image
+- Click the animal selection panel
+- Browse through available options
+- Click desired image to select
 
-### 3. Download Your Meme
-Once you're happy with your creation, hit the download button to save your meme image for sharing or future use.
+### 3. Customize Text
+- Enter your desired text in the input field
+- Text automatically appears in speech bubble format 💭
+- Real-time preview updates as you type
+- Text content automatically adjusts with ellipsis (`...`) if it exceeds speech bubble boundaries
 
-##  How to Contribute
-Everyone is welcome to contribute! <br/>
-If you find a bug or have suggestions for improvements, please report them by opening an issue [here](https://github.com/dev-bomdong/animal-meme-maker/issues).
+### 4. Download Your Meme
+- Click the `Download` button
+- Image saves automatically in PNG format
+- Default filename: `image.png`
+
+## Installation
+```bash
+# Clone the repository
+git clone https://github.com/dev-bomdong/animal-meme-maker.git
+
+# Install dependencies
+yarn install
+
+# Start development server
+yarn dev
+```
+
+## Contributing
+Everyone is welcome to contribute! Here's how you can help:
+
+### Reporting Issues
+- Please report Issues by opening an issue by [GitHub Issues](https://github.com/dev-bomdong/animal-meme-maker/issues)
+- Include browser and OS information
+- Provide steps to reproduce any bugs
+- Screenshots are appreciated
+
+### Development Process
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/newFeature`)
+3. Commit your changes (`git commit -m 'feat: Add new feature'`)
+4. Push to the branch (`git push origin feature/newFeature`)
+5. Open a Pull Request
 
 ## License
-[MIT license](https://github.com/dev-bomdong/animal-meme-maker/blob/main/LICENSE).
+This project is licensed under the [MIT license](https://github.com/dev-bomdong/animal-meme-maker/blob/main/LICENSE).
